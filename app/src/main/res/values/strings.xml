@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">InfinitPhoto</string>
+    <string name="album_detail_label">Album Details</string>
 </resources>
