@@ -13,4 +13,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="textHeader" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/textHeader</item>
+    </style>
+
+    <style name="textHashTag" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/textHashTag</item>
+    </style>
+
 </resources>
