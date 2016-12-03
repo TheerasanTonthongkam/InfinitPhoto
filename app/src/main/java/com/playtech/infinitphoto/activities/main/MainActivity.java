@@ -1,10 +1,14 @@
-package com.playtech.infinitphoto;
+package com.playtech.infinitphoto.activities.main;
 
 import android.databinding.DataBindingUtil;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
+import com.playtech.infinitphoto.R;
+import com.playtech.infinitphoto.adapter.PhotoPagerAdapter;
 import com.playtech.infinitphoto.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initBindingAndViewModel();
         initToolbar();
+        initTab();
     }
 
     private void initBindingAndViewModel() {
@@ -39,5 +44,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void initToolbar() {
         setSupportActionBar(binding.toolbar);
+    }
+
+    private void initTab() {
+        TabLayout tabLayout = binding.tabLayout;
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.my_matches_label), true);
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.all_photos_label));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        ViewPager pager = binding.pager;
+        PhotoPagerAdapter pagerAdapter = new PhotoPagerAdapter(getSupportFragmentManager());
+        pager.setAdapter(pagerAdapter);
+
+        initPagerEvent(pager);
+    }
+
+    private void initPagerEvent(ViewPager pager) {
+        
     }
 }

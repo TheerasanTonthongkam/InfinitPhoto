@@ -21,4 +21,9 @@
         <item name="android:textColor">@color/textHashTag</item>
     </style>
 
+    <style name="tabBar" parent="ThemeOverlay.AppCompat.Light">
+        <item name="tabSelectedTextColor">@color/colorAccent</item>
+        <item name="tabTextColor">@color/deselected_tab_text</item>
+        <item name="tabIndicatorColor">@color/colorAccent</item>
+    </style>
 </resources>

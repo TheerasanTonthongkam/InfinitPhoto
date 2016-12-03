@@ -9,4 +9,6 @@
     <color name="divider">#efefef</color>
     <color name="button_line">#cccccc</color>
     <color name="solid_white">#ffffff</color>
+    <color name="selected_tab_text">#2b2f30</color>
+    <color name="deselected_tab_text">#b4bcbe</color>
 </resources>

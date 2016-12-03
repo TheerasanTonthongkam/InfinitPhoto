@@ -1,7 +1,9 @@
-package com.playtech.infinitphoto;
+package com.playtech.infinitphoto.activities.main;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+
+import com.playtech.infinitphoto.BR;
 
 public class MainActivityViewModel extends BaseObservable {
 
