@@ -3,7 +3,7 @@ package com.playtech.infinitphoto.viewholder;
 import android.support.v7.widget.RecyclerView;
 
 import com.playtech.infinitphoto.databinding.ItemPhotoBinding;
-import com.playtech.infinitphoto.model.Photo;
+import com.playtech.infinitphoto.model.PhotoModel;
 
 public class PhotoViewHolder extends RecyclerView.ViewHolder{
 
@@ -14,7 +14,11 @@ public class PhotoViewHolder extends RecyclerView.ViewHolder{
         this.binding = itemView;
     }
 
-    public void setDataPhotoItem(Photo photo)  {
-        binding.setItem(photo);
+    public void setDataPhotoItem(PhotoModel photoModel)  {
+        binding.setItem(photoModel);
+    }
+
+    public ItemPhotoBinding getBinding() {
+        return binding;
     }
 }

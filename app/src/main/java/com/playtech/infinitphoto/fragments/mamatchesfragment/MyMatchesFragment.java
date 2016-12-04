@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.playtech.infinitphoto.R;
 import com.playtech.infinitphoto.adapter.PhotoListAdapter;
 import com.playtech.infinitphoto.databinding.FragmentMyMatchesBinding;
-import com.playtech.infinitphoto.model.Photo;
+import com.playtech.infinitphoto.model.PhotoModel;
 
 public class MyMatchesFragment extends Fragment {
 
@@ -42,19 +42,18 @@ public class MyMatchesFragment extends Fragment {
         photoList.setHasFixedSize(true);
         photoList.setLayoutManager(layout);
 
-        ObservableArrayList<Photo> photos = new ObservableArrayList<>();
+        ObservableArrayList<PhotoModel> photoModels = new ObservableArrayList<>();
 
-        for (int i = 0; i < 50; i++){
-            photos.add(new Photo("http://www.japan-guide.com/g10/interest_food_top.jpg"));
-            photos.add(new Photo("http://muza-chan.net/aj/poze-weblog4/dango.jpg"));
-            photos.add(new Photo("https://cdn.cheapoguides.com/wp-content/uploads/sites/2/2015/05/2192225496_76702451ff_b-770x515.jpg"));
-            photos.add(new Photo("https://www.tsunagujapan.com/wp-content/uploads/2015/04/6037757090_d41c5e3541_b.jpg"));
-            photos.add(new Photo("http://expja.com/wp-content/uploads/2015/12/sashimi-japanese-food-1024x681.jpg"));
+        for (int i = 0; i < 250; i++){
+            photoModels.add(new PhotoModel("http://www.japan-guide.com/g10/interest_food_top.jpg"));
+            photoModels.add(new PhotoModel("http://muza-chan.net/aj/poze-weblog4/dango.jpg"));
+            photoModels.add(new PhotoModel("https://cdn.cheapoguides.com/wp-content/uploads/sites/2/2015/05/2192225496_76702451ff_b-770x515.jpg"));
+            photoModels.add(new PhotoModel("https://www.tsunagujapan.com/wp-content/uploads/2015/04/6037757090_d41c5e3541_b.jpg"));
+            photoModels.add(new PhotoModel("http://expja.com/wp-content/uploads/2015/12/sashimi-japanese-food-1024x681.jpg"));
         }
 
-
-        PhotoListAdapter adapter = new PhotoListAdapter(photos);
-
+        int imageCacheSize = 30;
+        PhotoListAdapter adapter = new PhotoListAdapter(photoModels, imageCacheSize);
         photoList.setAdapter(adapter);
     }
 }
