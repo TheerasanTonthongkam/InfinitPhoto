@@ -4,4 +4,6 @@
     <string name="my_matches_label">My Matches</string>
     <string name="all_photos_label">All Photos</string>
     <string name="loading">Loading...</string>
+    <string name="load_fail">load fail</string>
+    <string name="retry">Retry</string>
 </resources>

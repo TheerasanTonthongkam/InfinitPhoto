@@ -29,7 +29,8 @@ public final class BindingAdapters {
 
             @Override
             public void onError() {
-
+                photoModel.setLoadError(true);
+                photoModel.setLoadFinish(true);
             }
         };
     }

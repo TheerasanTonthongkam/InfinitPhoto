@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/grid_spacing"
+        android:gravity="center"
         tools:layout_width="300dp"
         tools:layout_height="300dp">
         <ProgressBar
@@ -29,5 +30,24 @@
             android:layout_centerInParent="true"
             app:photoModel="@{item}"
             tools:src="@drawable/place_holder"/>
+        <LinearLayout
+            android:visibility="@{item.loadError? View.VISIBLE:View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:drawableTop="@drawable/icon_load_fail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/icon_padding"
+                android:text="@string/load_fail"/>
+            <Button
+                style="@style/RetryButton"
+                android:text="@string/retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
     </com.playtech.infinitphoto.view.layout.SquareFrameLayout>
 </layout>

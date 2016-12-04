@@ -8,6 +8,7 @@ import com.android.databinding.library.baseAdapters.BR;
 public class PhotoModel extends BaseObservable {
     private String imageUrl;
     private boolean loadFinish;
+    private boolean loadError;
 
     public PhotoModel() {}
 
@@ -33,5 +34,15 @@ public class PhotoModel extends BaseObservable {
     public void setLoadFinish(boolean loadFinish) {
         this.loadFinish = loadFinish;
         notifyPropertyChanged(BR.loadFinish);
+    }
+
+    @Bindable
+    public boolean isLoadError() {
+        return loadError;
+    }
+
+    public void setLoadError(boolean loadError) {
+        this.loadError = loadError;
+        notifyPropertyChanged(BR.loadError);
     }
 }
