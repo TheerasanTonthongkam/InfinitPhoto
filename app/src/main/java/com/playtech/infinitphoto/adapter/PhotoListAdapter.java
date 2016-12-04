@@ -40,25 +40,6 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
     public void onBindViewHolder(PhotoViewHolder holder, int position) {
         PhotoModel photoModel = photoModels.get(position);
         holder.setDataPhotoItem(photoModel);
-        ItemPhotoBinding binding = holder.getBinding();
-
-        Picasso.with(binding.getRoot().getContext())
-                .load(photoModel.getImageUrl())
-                .into(binding.image, picassoCallback(photoModel));
-    }
-
-    private Callback picassoCallback(PhotoModel photoModel) {
-        return new Callback() {
-            @Override
-            public void onSuccess() {
-                photoModel.setLoadFinish(true);
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        };
     }
 
     @Override

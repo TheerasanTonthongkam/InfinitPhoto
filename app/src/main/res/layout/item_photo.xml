@@ -27,8 +27,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:layout_centerInParent="true"
+            app:photoModel="@{item}"
             tools:src="@drawable/place_holder"/>
-
-        <!--app:imageUrl="@{item.imageUrl}"-->
     </com.playtech.infinitphoto.view.layout.SquareFrameLayout>
 </layout>
