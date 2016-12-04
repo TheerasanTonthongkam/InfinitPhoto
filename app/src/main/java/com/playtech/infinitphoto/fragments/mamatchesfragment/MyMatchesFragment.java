@@ -18,7 +18,7 @@ import com.playtech.infinitphoto.model.PhotoModel;
 
 public class MyMatchesFragment extends Fragment {
 
-    FragmentMyMatchesBinding binding;
+    private FragmentMyMatchesBinding binding;
 
     @Nullable
     @Override
@@ -44,16 +44,17 @@ public class MyMatchesFragment extends Fragment {
 
         ObservableArrayList<PhotoModel> photoModels = new ObservableArrayList<>();
 
-        for (int i = 0; i < 250; i++){
+        for (int i = 0; i < 10; i++){
             photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
-            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
-            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
-            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
-            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
-            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
+            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/373515bd-8f25-400f-a6dc-bff4d95280b7.jpg"));
+            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/80d7b3f8-6c0b-4178-b639-afd0d01aff92.jpg"));
+            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/81f461f2-4c73-44d2-b8c1-418969e812f8.jpg"));
+            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/e2af3d4a-c390-443a-9dba-d57c9a3b7d17.jpg"));
+            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/275c7a65-68c1-437f-8043-d76b7059ebab.jpg"));
         }
-        
+
         PhotoListAdapter adapter = new PhotoListAdapter(photoModels);
         photoList.setAdapter(adapter);
     }
 }
+
