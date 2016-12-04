@@ -45,4 +45,14 @@ public class PhotoModel extends BaseObservable {
         this.loadError = loadError;
         notifyPropertyChanged(BR.loadError);
     }
+
+    public void retry() {
+        retryWithUrl(this.imageUrl);
+    }
+
+    public void retryWithUrl(String url) {
+        setLoadError(false);
+        setLoadFinish(false);
+        setImageUrl(url);
+    }
 }

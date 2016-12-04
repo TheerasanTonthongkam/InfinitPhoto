@@ -1,6 +1,8 @@
 package com.playtech.infinitphoto.adapter;
 
 import android.databinding.BindingAdapter;
+import android.databinding.ObservableArrayList;
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewParent;
 import android.widget.ImageView;
 
@@ -13,15 +15,20 @@ public final class BindingAdapters {
     private BindingAdapters() {
     }
 
-    @BindingAdapter({"photoModel"})
-    public static void setPhoto(ImageView imageView, PhotoModel photoModel) {
+    @BindingAdapter({"photoModel", "imageUrl"})
+    public static void setPhoto(ImageView imageView, PhotoModel photoModel, String imageUrl) {
+        if (photoModel.getImageUrl().isEmpty()) {
+            photoModel.setImageUrl(null);
+        }
+
         Picasso.with(imageView.getContext())
-                .load(photoModel.getImageUrl())
+                .load(imageUrl)
                 .into(imageView, picassoCallback(photoModel));
     }
 
     private static Callback picassoCallback(PhotoModel photoModel) {
         return new Callback() {
+
             @Override
             public void onSuccess() {
                 photoModel.setLoadFinish(true);
@@ -33,5 +40,10 @@ public final class BindingAdapters {
                 photoModel.setLoadFinish(true);
             }
         };
+    }
+
+    @BindingAdapter({"photoAdapter"})
+    public static void setRecycleView(RecyclerView view, RecyclerView.Adapter adapter) {
+        view.setAdapter(adapter);
     }
 }

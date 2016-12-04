@@ -1,25 +1,20 @@
 package com.playtech.infinitphoto.adapter;
 
 import android.databinding.ObservableArrayList;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.playtech.infinitphoto.databinding.ItemPhotoBinding;
+import com.playtech.infinitphoto.listener.OnRetryListener;
 import com.playtech.infinitphoto.model.PhotoModel;
 import com.playtech.infinitphoto.viewholder.PhotoViewHolder;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 public class PhotoListAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
 
     private ObservableArrayList<PhotoModel> photoModels;
     private LayoutInflater layoutInflater;
+    private OnRetryListener onRetryListener;
 
     public PhotoListAdapter(ObservableArrayList<PhotoModel> photoModels) {
         this.photoModels = photoModels;
@@ -40,10 +35,16 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
     public void onBindViewHolder(PhotoViewHolder holder, int position) {
         PhotoModel photoModel = photoModels.get(position);
         holder.setDataPhotoItem(photoModel);
+        ItemPhotoBinding binding = holder.getBinding();
+        binding.retryButton.setOnClickListener(v -> onRetryListener.click(binding.image, position));
     }
 
     @Override
     public int getItemCount() {
         return photoModels.size();
+    }
+
+    public void setOnRetryListener(OnRetryListener onRetryListener) {
+        this.onRetryListener = onRetryListener;
     }
 }
