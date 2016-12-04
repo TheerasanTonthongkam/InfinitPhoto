@@ -43,7 +43,7 @@ public final class BindingAdapters {
     }
 
     @BindingAdapter({"photoAdapter"})
-    public static void setRecycleView(RecyclerView view, RecyclerView.Adapter adapter) {
+    public static void setRecycleView(RecyclerView view, PhotoListAdapter adapter) {
         view.setAdapter(adapter);
     }
 }

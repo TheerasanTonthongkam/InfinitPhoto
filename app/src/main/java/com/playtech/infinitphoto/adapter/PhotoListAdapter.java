@@ -56,4 +56,12 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
     public void setOnEndList(OnEndList onEndList) {
         this.onEndList = onEndList;
     }
+
+//    public ObservableArrayList<PhotoModel> getPhotoModels() {
+//        return photoModels;
+//    }
+//
+//    public void setPhotoModels(ObservableArrayList<PhotoModel> photoModels) {
+//        this.photoModels = photoModels;
+//    }
 }

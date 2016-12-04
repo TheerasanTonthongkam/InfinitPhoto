@@ -8,7 +8,7 @@
             type="com.playtech.infinitphoto.fragments.mymatchesfragment.MyMatchesViewModel"/>
         <variable
             name="adapter"
-            type="android.support.v7.widget.RecyclerView.Adapter"/>
+            type="com.playtech.infinitphoto.adapter.PhotoListAdapter"/>
     </data>
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/rootLayout"
@@ -26,27 +26,7 @@
             app:photoAdapter="@{adapter}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_height="wrap_content"
-            />
-
-        <!--<LinearLayout-->
-            <!--android:padding="@dimen/all_padding_medium"-->
-            <!--android:layout_below="@id/photo_list"-->
-            <!--android:id="@+id/load_more_progress"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:background="@drawable/load_more_background"-->
-            <!--android:orientation="horizontal">-->
-            <!--<ProgressBar-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:textColor="@color/solid_white"-->
-                <!--android:text="@string/load_more"/>-->
-        <!--</LinearLayout>-->
+            tools:layout_height="wrap_content" />
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

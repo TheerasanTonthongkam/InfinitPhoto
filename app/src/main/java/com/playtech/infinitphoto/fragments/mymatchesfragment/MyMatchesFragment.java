@@ -88,12 +88,7 @@ public class MyMatchesFragment extends Fragment {
             photoModel.retry();
         });
 
-        adapter.setOnEndList(() -> {
-            if (!snackBar.isShown()) {
-                snackBar.show();
-                viewModel.setLoadMore(true);
-            }
-        });
+        adapter.setOnEndList(() -> viewModel.loadMore());
         binding.setAdapter(adapter);
     }
 
