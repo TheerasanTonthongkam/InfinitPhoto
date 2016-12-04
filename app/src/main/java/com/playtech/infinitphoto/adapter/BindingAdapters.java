@@ -1,6 +1,7 @@
 package com.playtech.infinitphoto.adapter;
 
 import android.databinding.BindingAdapter;
+import android.view.ViewParent;
 import android.widget.ImageView;
 
 

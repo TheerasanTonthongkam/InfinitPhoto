@@ -7,9 +7,18 @@
             name="item"
             type="com.playtech.infinitphoto.model.Photo"/>
     </data>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:imageRes="@{item.resId}"
-        tools:src="@drawable/image_place_holder_2"/>
+    <com.playtech.infinitphoto.view.layout.SquareFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/grid_spacing"
+        tools:layout_width="300dp"
+        tools:layout_height="300dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:imageRes="@{item.resId}"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/place_holder"/>
+    </com.playtech.infinitphoto.view.layout.SquareFrameLayout>
+
 </layout>
