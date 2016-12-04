@@ -7,7 +7,7 @@ import com.playtech.infinitphoto.model.PhotoModel;
 
 public class PhotoViewHolder extends RecyclerView.ViewHolder{
 
-    private ItemPhotoBinding binding;
+    private final ItemPhotoBinding binding;
 
     public PhotoViewHolder(ItemPhotoBinding itemView) {
         super(itemView.getRoot());

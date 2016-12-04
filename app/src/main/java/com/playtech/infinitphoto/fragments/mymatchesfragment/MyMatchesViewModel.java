@@ -26,7 +26,7 @@ public class MyMatchesViewModel extends BaseObservable {
         return loadMore;
     }
 
-    public void setLoadMore(boolean loadMore) {
+    private void setLoadMore(boolean loadMore) {
         this.loadMore = loadMore;
         notifyPropertyChanged(BR.loadMore);
     }

@@ -30,7 +30,8 @@
             android:layout_centerInParent="true"
             app:photoModel="@{item}"
             app:imageUrl="@{item.imageUrl}"
-            tools:src="@drawable/place_holder"/>
+            android:contentDescription="@string/image_thumbnail"
+            tools:src="@color/colorPrimary"/>
         <LinearLayout
             android:visibility="@{item.loadError? View.VISIBLE:View.GONE}"
             android:layout_width="match_parent"

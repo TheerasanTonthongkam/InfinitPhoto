@@ -1,9 +1,7 @@
 package com.playtech.infinitphoto.adapter;
 
 import android.databinding.BindingAdapter;
-import android.databinding.ObservableArrayList;
 import android.support.v7.widget.RecyclerView;
-import android.view.ViewParent;
 import android.widget.ImageView;
 
 import com.playtech.infinitphoto.model.PhotoModel;

@@ -57,6 +57,7 @@
             </LinearLayout>
 
             <ImageButton
+                android:contentDescription="@string/add_people"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/icon_padding"
@@ -86,6 +87,7 @@
             android:layout_height="@dimen/footer_height"
             android:gravity="end|center_vertical">
             <ImageButton
+                android:contentDescription="@string/more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/solid_white"

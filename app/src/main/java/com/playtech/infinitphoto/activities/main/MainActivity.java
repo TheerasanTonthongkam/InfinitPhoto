@@ -14,7 +14,6 @@ import com.playtech.infinitphoto.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private MainActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private void initBindingAndViewModel() {
         binding = DataBindingUtil.bind(getRootView());
 
-        viewModel = new MainActivityViewModel();
+        MainActivityViewModel viewModel = new MainActivityViewModel();
         initViewModelData(viewModel);
         binding.setViewModel(viewModel);
     }

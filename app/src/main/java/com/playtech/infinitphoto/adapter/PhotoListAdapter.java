@@ -13,7 +13,7 @@ import com.playtech.infinitphoto.viewholder.PhotoViewHolder;
 
 public class PhotoListAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
 
-    private ObservableArrayList<PhotoModel> photoModels;
+    private final ObservableArrayList<PhotoModel> photoModels;
     private LayoutInflater layoutInflater;
     private OnRetryListener onRetryListener;
     private OnEndList onEndList;
