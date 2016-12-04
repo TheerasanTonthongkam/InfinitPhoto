@@ -13,12 +13,17 @@
         android:padding="@dimen/grid_spacing"
         tools:layout_width="300dp"
         tools:layout_height="300dp">
+        <TextView
+        android:text="@string/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:imageRes="@{item.resId}"
+            app:imageUrl="@{item.imageUrl}"
             android:scaleType="centerCrop"
+            android:layout_centerInParent="true"
             tools:src="@drawable/place_holder"/>
     </com.playtech.infinitphoto.view.layout.SquareFrameLayout>
-
 </layout>

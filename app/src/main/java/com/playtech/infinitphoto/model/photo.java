@@ -5,21 +5,21 @@ import android.databinding.Bindable;
 import com.android.databinding.library.baseAdapters.BR;
 
 public class Photo extends BaseObservable {
-    private int resId;
+    private String imageUrl;
 
     public Photo() {}
 
-    public Photo(int resId) {
-        this.resId = resId;
+    public Photo(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Bindable
-    public int getResId() {
-        return resId;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setResId(int resId) {
-        this.resId = resId;
-        notifyPropertyChanged(BR.resId);
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        notifyPropertyChanged(BR.imageUrl);
     }
 }

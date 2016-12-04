@@ -2,9 +2,9 @@ package com.playtech.infinitphoto.view.layout;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
-public class SquareFrameLayout extends FrameLayout {
+public class SquareFrameLayout extends RelativeLayout {
     public SquareFrameLayout(Context context) {
         super(context);
     }

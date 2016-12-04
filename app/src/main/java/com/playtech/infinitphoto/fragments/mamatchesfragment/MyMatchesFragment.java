@@ -45,10 +45,11 @@ public class MyMatchesFragment extends Fragment {
         ObservableArrayList<Photo> photos = new ObservableArrayList<>();
 
         for (int i = 0; i < 50; i++){
-            photos.add(new Photo(R.drawable.place_holder));
-            photos.add(new Photo(R.drawable.image_place_holder_1));
-            photos.add(new Photo(R.drawable.image_place_holder_2));
-            photos.add(new Photo(R.drawable.image_place_holder_3));
+            photos.add(new Photo("http://www.japan-guide.com/g10/interest_food_top.jpg"));
+            photos.add(new Photo("http://muza-chan.net/aj/poze-weblog4/dango.jpg"));
+            photos.add(new Photo("https://cdn.cheapoguides.com/wp-content/uploads/sites/2/2015/05/2192225496_76702451ff_b-770x515.jpg"));
+            photos.add(new Photo("https://www.tsunagujapan.com/wp-content/uploads/2015/04/6037757090_d41c5e3541_b.jpg"));
+            photos.add(new Photo("http://expja.com/wp-content/uploads/2015/12/sashimi-japanese-food-1024x681.jpg"));
         }
 
 
