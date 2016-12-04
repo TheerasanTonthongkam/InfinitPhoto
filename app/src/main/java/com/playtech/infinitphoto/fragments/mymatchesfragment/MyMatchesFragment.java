@@ -1,15 +1,21 @@
 package com.playtech.infinitphoto.fragments.mymatchesfragment;
 
 import android.databinding.DataBindingUtil;
+import android.databinding.Observable;
 import android.databinding.ObservableArrayList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import com.playtech.infinitphoto.BR;
 
 import com.playtech.infinitphoto.R;
 import com.playtech.infinitphoto.adapter.PhotoListAdapter;
@@ -20,6 +26,7 @@ public class MyMatchesFragment extends Fragment {
 
     private FragmentMyMatchesBinding binding;
     private MyMatchesViewModel viewModel;
+    private Snackbar snackBar;
 
     @Nullable
     @Override
@@ -33,6 +40,7 @@ public class MyMatchesFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initViewModel();
         initPhotoGrid();
+        initShackBar();
         initAdapter();
     }
 
@@ -48,6 +56,7 @@ public class MyMatchesFragment extends Fragment {
             photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/275c7a65-68c1-437f-8043-d76b7059ebab.jpg"));
         }
 
+        viewModel.addOnPropertyChangedCallback(onViewModelPropertyChanged());
         viewModel.setPhotoModels(photoModels);
         binding.setViewModel(viewModel);
     }
@@ -61,13 +70,52 @@ public class MyMatchesFragment extends Fragment {
         photoList.setLayoutManager(layout);
     }
 
+    private void initShackBar() {
+        snackBar = Snackbar.make(binding.rootLayout, R.string.load_more, Snackbar.LENGTH_INDEFINITE);
+        Snackbar.SnackbarLayout layout = (Snackbar.SnackbarLayout) snackBar.getView();
+        ProgressBar progressBar = new ProgressBar(getContext());
+        progressBar.setIndeterminate(true);
+        Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.load_more_background);
+        layout.setBackground(drawable);
+        layout.setAlpha(0.9f);
+        layout.addView(progressBar);
+    }
+
     private void initAdapter() {
         PhotoListAdapter adapter = new PhotoListAdapter(viewModel.getPhotoModels());
-        adapter.setOnRetryListener((imageView, position) -> {
+        adapter.setOnRetryListener(position -> {
             PhotoModel photoModel = viewModel.getPhotoModels().get(position);
-            photoModel.retryWithUrl("https://waldo-thumbs-staging.s3.amazonaws.com/medium/275c7a65-68c1-437f-8043-d76b7059ebab.jpg");
+            photoModel.retry();
+        });
+
+        adapter.setOnEndList(() -> {
+            if (!snackBar.isShown()) {
+                snackBar.show();
+                viewModel.setLoadMore(true);
+            }
         });
         binding.setAdapter(adapter);
     }
+
+    private Observable.OnPropertyChangedCallback onViewModelPropertyChanged() {
+        return new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int id) {
+                if (id == BR.loadMore) {
+                    triggerLoadMore();
+                }
+            }
+        };
+    }
+
+    private void triggerLoadMore() {
+        if (!snackBar.isShown() && viewModel.isLoadMore()) {
+            snackBar.show();
+        }
+        if (snackBar.isShown() && !viewModel.isLoadMore()) {
+            snackBar.dismiss();
+        }
+    }
+
 }
 

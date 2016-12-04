@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.playtech.infinitphoto.databinding.ItemPhotoBinding;
+import com.playtech.infinitphoto.listener.OnEndList;
 import com.playtech.infinitphoto.listener.OnRetryListener;
 import com.playtech.infinitphoto.model.PhotoModel;
 import com.playtech.infinitphoto.viewholder.PhotoViewHolder;
@@ -15,6 +16,7 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
     private ObservableArrayList<PhotoModel> photoModels;
     private LayoutInflater layoutInflater;
     private OnRetryListener onRetryListener;
+    private OnEndList onEndList;
 
     public PhotoListAdapter(ObservableArrayList<PhotoModel> photoModels) {
         this.photoModels = photoModels;
@@ -36,7 +38,10 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
         PhotoModel photoModel = photoModels.get(position);
         holder.setDataPhotoItem(photoModel);
         ItemPhotoBinding binding = holder.getBinding();
-        binding.retryButton.setOnClickListener(v -> onRetryListener.click(binding.image, position));
+        binding.retryButton.setOnClickListener(v -> onRetryListener.click(position));
+        if (position == getItemCount() - 1 ) {
+            onEndList.callback();
+        }
     }
 
     @Override
@@ -46,5 +51,9 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
 
     public void setOnRetryListener(OnRetryListener onRetryListener) {
         this.onRetryListener = onRetryListener;
+    }
+
+    public void setOnEndList(OnEndList onEndList) {
+        this.onEndList = onEndList;
     }
 }
