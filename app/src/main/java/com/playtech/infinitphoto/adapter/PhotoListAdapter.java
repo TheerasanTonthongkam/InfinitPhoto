@@ -4,8 +4,10 @@ import android.databinding.ObservableArrayList;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.playtech.infinitphoto.databinding.ItemPhotoBinding;
@@ -18,11 +20,9 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
 
     private ObservableArrayList<PhotoModel> photoModels;
     private LayoutInflater layoutInflater;
-    private int imageCacheSize;
 
-    public PhotoListAdapter(ObservableArrayList<PhotoModel> photoModels, int imageCacheSize) {
+    public PhotoListAdapter(ObservableArrayList<PhotoModel> photoModels) {
         this.photoModels = photoModels;
-        this.imageCacheSize = imageCacheSize;
     }
 
     @Override
@@ -42,39 +42,21 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
         holder.setDataPhotoItem(photoModel);
         ItemPhotoBinding binding = holder.getBinding();
 
-        removeDrawableCache(position);
-        if (photoModel.getDrawableCache() != null) {
-            binding.image.setImageDrawable(photoModel.getDrawableCache());
-            return;
-        }
-
         Picasso.with(binding.getRoot().getContext())
                 .load(photoModel.getImageUrl())
-                .into(binding.image, picassoCallback(photoModel, binding.image));
+                .into(binding.image, picassoCallback(photoModel));
     }
 
-    private void removeDrawableCache(int position) {
-        int lastIndex = position - imageCacheSize;
-        int maxIndex = position + imageCacheSize;
-
-        if (lastIndex >= 0)
-            photoModels.get(lastIndex).setDrawableCache(null);
-
-        if (maxIndex < photoModels.size() - 1)
-            photoModels.get(maxIndex).setDrawableCache(null);
-    }
-
-    private Callback picassoCallback(PhotoModel photoModel, ImageView imageView) {
+    private Callback picassoCallback(PhotoModel photoModel) {
         return new Callback() {
             @Override
             public void onSuccess() {
-                Drawable drawable = imageView.getDrawable();
-                photoModel.setDrawableCache(drawable);
+                photoModel.setLoadFinish(true);
             }
 
             @Override
             public void onError() {
-                Toast.makeText(imageView.getContext(), "Not load", Toast.LENGTH_SHORT).show();
+
             }
         };
     }

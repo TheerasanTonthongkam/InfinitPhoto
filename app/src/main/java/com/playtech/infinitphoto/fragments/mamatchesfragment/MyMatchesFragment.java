@@ -45,15 +45,15 @@ public class MyMatchesFragment extends Fragment {
         ObservableArrayList<PhotoModel> photoModels = new ObservableArrayList<>();
 
         for (int i = 0; i < 250; i++){
-            photoModels.add(new PhotoModel("http://www.japan-guide.com/g10/interest_food_top.jpg"));
-            photoModels.add(new PhotoModel("http://muza-chan.net/aj/poze-weblog4/dango.jpg"));
-            photoModels.add(new PhotoModel("https://cdn.cheapoguides.com/wp-content/uploads/sites/2/2015/05/2192225496_76702451ff_b-770x515.jpg"));
-            photoModels.add(new PhotoModel("https://www.tsunagujapan.com/wp-content/uploads/2015/04/6037757090_d41c5e3541_b.jpg"));
-            photoModels.add(new PhotoModel("http://expja.com/wp-content/uploads/2015/12/sashimi-japanese-food-1024x681.jpg"));
+            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
+            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
+            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
+            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
+            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
+            photoModels.add(new PhotoModel("https://waldo-thumbs-staging.s3.amazonaws.com/medium/3b568ff2-f408-4824-996b-0116c06b0a6f.jpg"));
         }
-
-        int imageCacheSize = 30;
-        PhotoListAdapter adapter = new PhotoListAdapter(photoModels, imageCacheSize);
+        
+        PhotoListAdapter adapter = new PhotoListAdapter(photoModels);
         photoList.setAdapter(adapter);
     }
 }

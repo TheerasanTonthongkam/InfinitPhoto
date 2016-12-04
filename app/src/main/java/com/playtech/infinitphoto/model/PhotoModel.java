@@ -2,15 +2,12 @@ package com.playtech.infinitphoto.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 
 import com.android.databinding.library.baseAdapters.BR;
 
 public class PhotoModel extends BaseObservable {
     private String imageUrl;
-    private Bitmap cache;
-    private Drawable drawableCache;
+    private boolean loadFinish;
 
     public PhotoModel() {}
 
@@ -29,20 +26,12 @@ public class PhotoModel extends BaseObservable {
     }
 
     @Bindable
-    public Bitmap getCache() {
-        return cache;
+    public boolean isLoadFinish() {
+        return loadFinish;
     }
 
-    public void setCache(Bitmap cache) {
-        this.cache = cache;
-        notifyPropertyChanged(BR.cache);
-    }
-
-    public Drawable getDrawableCache() {
-        return drawableCache;
-    }
-
-    public void setDrawableCache(Drawable drawableCache) {
-        this.drawableCache = drawableCache;
+    public void setLoadFinish(boolean loadFinish) {
+        this.loadFinish = loadFinish;
+        notifyPropertyChanged(BR.loadFinish);
     }
 }
