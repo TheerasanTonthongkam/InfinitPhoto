@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.playtech.infinitphoto.view.activities.main.MainActivityViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        <LinearLayout
+            android:padding="@dimen/all_padding_medium"
+            android:background="@drawable/bottom_line"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    tools:text="Beautiful Hipster Family"
+                    android:text="@{viewModel.albumName}"
+                    style="@style/TextHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:lines="1"
+                    android:ellipsize="marquee"
+                    android:id="@+id/hashName" />
+
+                <TextView
+                    tools:text="#beautifulhipsterfamily"
+                    android:text="@{viewModel.hashTag}"
+                    style="@style/TextHashTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hashTag" />
+            </LinearLayout>
+
+            <ImageButton
+                android:contentDescription="@string/add_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_padding"
+                android:background="@drawable/button_circle_line"
+                android:src="@drawable/icon_add"/>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_line"
+            style="@style/TabBar"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:padding="@dimen/all_padding_medium"
+            android:background="@drawable/top_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_height"
+            android:gravity="end|center_vertical">
+            <ImageButton
+                android:contentDescription="@string/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/solid_white"
+                android:src="@drawable/icon_more"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
+
+
