@@ -7,7 +7,7 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 
-public interface AlumService {
+public interface AlbumService {
     Observable<RawAlbumData> getAlbums(int offset);
 
     @GET("/gql")

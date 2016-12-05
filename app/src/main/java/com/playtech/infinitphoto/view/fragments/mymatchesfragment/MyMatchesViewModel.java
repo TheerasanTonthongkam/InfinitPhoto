@@ -1,24 +1,20 @@
 package com.playtech.infinitphoto.view.fragments.mymatchesfragment;
 
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.ObservableArrayList;
 
+import com.playtech.infinitphoto.cookie.PersistentCookieStore;
 import com.playtech.infinitphoto.model.PhotoModel;
 import com.playtech.infinitphoto.BR;
 import com.playtech.infinitphoto.model.PhotoSet;
 import com.playtech.infinitphoto.model.RawAlbumData;
-import com.playtech.infinitphoto.service.AlumServiceImp;
-import com.playtech.infinitphoto.service.AuthenticationServiceImp;
-import com.playtech.infinitphoto.service.interfaces.AlumService;
+import com.playtech.infinitphoto.service.ServiceProvider;
+import com.playtech.infinitphoto.service.interfaces.AlbumService;
 import com.playtech.infinitphoto.service.interfaces.AuthenticationService;
 
 import java.util.ArrayList;
 
-import okhttp3.ResponseBody;
-import retrofit2.Response;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class MyMatchesViewModel extends BaseObservable {
@@ -26,25 +22,27 @@ public class MyMatchesViewModel extends BaseObservable {
     private boolean loadMore;
     private boolean loading;
     private boolean error;
-    final private AuthenticationService authService;
-    private AlumService alumService;
+    private AuthenticationService authService;
+    private AlbumService albumService;
     private int photoModelsSize = 0;
     private int maxSize = 0;
 
-    public MyMatchesViewModel(Context context) {
-        authService = AuthenticationServiceImp.getInstance(context);
+    public MyMatchesViewModel() {}
+
+    public MyMatchesViewModel(PersistentCookieStore store) {
+        authService = ServiceProvider.getAuthenticationServiceInstance(store);
+        albumService = ServiceProvider.getAlumServiceInstance(authService.getTokenCookie());
     }
 
     public void startRetrieveCookie(String username, String password) {
         setLoading(true);
-        if (authService.getTokenCookie() == null || authService.getTokenCookie().hasExpired()) {
-            authService.login(username, password)
+        if (authService.getTokenCookie() == null || authService.isTokenExpire()) {
+            authService.getLoginResponseCode(username, password)
                     .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
+                    .observeOn(Schedulers.immediate())
                     .subscribe(this::onResponseReady,
                             this::onThrowError);
         } else {
-            alumService = AlumServiceImp.getInstance(authService.getTokenCookie());
             setLoading(true);
             loadData();
         }
@@ -91,9 +89,9 @@ public class MyMatchesViewModel extends BaseObservable {
     }
 
     private void loadData() {
-        alumService.getAlbums(photoModels.size())
+        albumService.getAlbums(photoModels.size())
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.immediate())
                 .subscribe(this::loadDataSuccess, this::onThrowError);
     }
 
@@ -119,8 +117,8 @@ public class MyMatchesViewModel extends BaseObservable {
         }
     }
 
-    private void onResponseReady(Response<ResponseBody> body) {
-        if (body.code() == 404) {
+    private void onResponseReady(int code) {
+        if (code == 404) {
             setLoading(false);
             loadMore();
         } else {
@@ -136,5 +134,21 @@ public class MyMatchesViewModel extends BaseObservable {
 
     public int getMaxSize() {
         return maxSize;
+    }
+
+    public void setAuthService(AuthenticationService authService) {
+        this.authService = authService;
+    }
+
+    public void setAlbumService(AlbumService albumService) {
+        this.albumService = albumService;
+    }
+
+    public AuthenticationService getAuthService() {
+        return authService;
+    }
+
+    public AlbumService getAlbumService() {
+        return albumService;
     }
 }

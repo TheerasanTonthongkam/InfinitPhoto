@@ -2,7 +2,7 @@ package com.playtech.infinitphoto.service;
 
 import com.playtech.infinitphoto.intercepter.AddCookiesInterceptor;
 import com.playtech.infinitphoto.model.RawAlbumData;
-import com.playtech.infinitphoto.service.interfaces.AlumService;
+import com.playtech.infinitphoto.service.interfaces.AlbumService;
 
 import java.net.HttpCookie;
 
@@ -14,13 +14,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
 
-public class AlumServiceImp implements AlumService {
+public class AlbumServiceImp implements AlbumService {
 
-    private final AlumService alumService;
+    private final AlbumService albumService;
 
-    private static AlumServiceImp instance;
-
-    private AlumServiceImp(HttpCookie cookie) {
+    public AlbumServiceImp(HttpCookie cookie) {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
 
@@ -36,14 +34,7 @@ public class AlumServiceImp implements AlumService {
                 .client(build)
                 .build();
 
-        alumService = retrofit.create(AlumService.class);
-    }
-
-    public static AlumService getInstance(HttpCookie cookie) {
-        if (instance == null) {
-            instance = new AlumServiceImp(cookie);
-        }
-        return instance;
+        albumService = retrofit.create(AlbumService.class);
     }
 
     @Override
@@ -53,7 +44,7 @@ public class AlumServiceImp implements AlumService {
 
     @Override
     public Observable<RawAlbumData> getAlbums(String query) {
-        return alumService.getAlbums(query);
+        return albumService.getAlbums(query);
     }
 
     private String getStringQuery(int offset) {

@@ -18,6 +18,7 @@ import com.playtech.infinitphoto.BR;
 
 import com.playtech.infinitphoto.R;
 import com.playtech.infinitphoto.adapter.PhotoGirdAdapter;
+import com.playtech.infinitphoto.cookie.PersistentCookieStore;
 import com.playtech.infinitphoto.databinding.FragmentMyMatchesBinding;
 import com.playtech.infinitphoto.model.PhotoModel;
 
@@ -46,7 +47,7 @@ public class MyMatchesFragment extends Fragment {
     }
 
     private void initViewModel() {
-        viewModel = new MyMatchesViewModel(getContext());
+        viewModel = new MyMatchesViewModel(new PersistentCookieStore(getContext()));
         ObservableArrayList<PhotoModel> photoModels = new ObservableArrayList<>();
         viewModel.addOnPropertyChangedCallback(onViewModelPropertyChanged());
         viewModel.setPhotoModels(photoModels);
