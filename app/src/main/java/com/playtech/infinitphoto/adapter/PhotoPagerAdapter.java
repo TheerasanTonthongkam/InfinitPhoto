@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.playtech.infinitphoto.fragments.allphotos.AllPhotoFragment;
-import com.playtech.infinitphoto.fragments.mymatchesfragment.MyMatchesFragment;
+import com.playtech.infinitphoto.view.fragments.allphotos.AllPhotoFragment;
+import com.playtech.infinitphoto.view.fragments.mymatchesfragment.MyMatchesFragment;
 
 import java.util.ArrayList;
 

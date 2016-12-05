@@ -13,14 +13,14 @@ public final class BindingAdapters {
     private BindingAdapters() {
     }
 
-    @BindingAdapter({"photoModel", "imageUrl"})
-    public static void setPhoto(ImageView imageView, PhotoModel photoModel, String imageUrl) {
-        if (photoModel.getImageUrl().isEmpty()) {
-            photoModel.setImageUrl(null);
+    @BindingAdapter({"photoModel", "imageThumbnailUrl"})
+    public static void setPhoto(ImageView imageView, PhotoModel photoModel, String imageThumbnailUrl) {
+        if (photoModel.getImageThumbnailUrl().isEmpty()) {
+            photoModel.setImageThumbnailUrl(null);
         }
 
         Picasso.with(imageView.getContext())
-                .load(imageUrl)
+                .load(imageThumbnailUrl)
                 .into(imageView, picassoCallback(photoModel));
     }
 

@@ -1,4 +1,4 @@
-package com.playtech.infinitphoto.fragments.mymatchesfragment;
+package com.playtech.infinitphoto.view.fragments.mymatchesfragment;
 
 import android.content.Context;
 import android.databinding.BaseObservable;

@@ -1,4 +1,4 @@
-package com.playtech.infinitphoto.fragments.mymatchesfragment;
+package com.playtech.infinitphoto.view.fragments.mymatchesfragment;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
@@ -27,6 +27,7 @@ public class MyMatchesFragment extends Fragment {
     private MyMatchesViewModel viewModel;
     private Snackbar snackBar;
     private PhotoGirdAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

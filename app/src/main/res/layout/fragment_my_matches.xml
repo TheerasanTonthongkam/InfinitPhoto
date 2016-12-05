@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.playtech.infinitphoto.fragments.mymatchesfragment.MyMatchesViewModel"/>
+            type="com.playtech.infinitphoto.view.fragments.mymatchesfragment.MyMatchesViewModel"/>
         <variable
             name="adapter"
             type="com.playtech.infinitphoto.adapter.PhotoGirdAdapter"/>

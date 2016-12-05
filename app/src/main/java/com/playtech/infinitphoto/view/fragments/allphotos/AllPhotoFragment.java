@@ -1,4 +1,4 @@
-package com.playtech.infinitphoto.fragments.allphotos;
+package com.playtech.infinitphoto.view.fragments.allphotos;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

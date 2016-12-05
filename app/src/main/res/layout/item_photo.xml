@@ -29,7 +29,7 @@
             android:scaleType="centerCrop"
             android:layout_centerInParent="true"
             app:photoModel="@{item}"
-            app:imageUrl="@{item.imageUrl}"
+            app:imageThumbnailUrl="@{item.imageThumbnailUrl}"
             android:contentDescription="@string/image_thumbnail"
             tools:src="@color/colorPrimary"/>
         <LinearLayout

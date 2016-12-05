@@ -1,4 +1,4 @@
-package com.playtech.infinitphoto.activities.main;
+package com.playtech.infinitphoto.view.activities.main;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;

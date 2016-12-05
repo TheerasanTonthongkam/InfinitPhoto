@@ -6,22 +6,22 @@ import android.databinding.Bindable;
 import com.android.databinding.library.baseAdapters.BR;
 
 public class PhotoModel extends BaseObservable {
-    private String imageUrl;
+    private String imageThumbnailUrl;
     private boolean loadFinish;
     private boolean loadError;
 
-    public PhotoModel(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public PhotoModel(String imageThumbnailUrl) {
+        this.imageThumbnailUrl = imageThumbnailUrl;
     }
 
     @Bindable
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageThumbnailUrl() {
+        return imageThumbnailUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-        notifyPropertyChanged(BR.imageUrl);
+    public void setImageThumbnailUrl(String imageThumbnailUrl) {
+        this.imageThumbnailUrl = imageThumbnailUrl;
+        notifyPropertyChanged(BR.imageThumbnailUrl);
     }
 
     @Bindable
@@ -45,12 +45,12 @@ public class PhotoModel extends BaseObservable {
     }
 
     public void retry() {
-        retryWithUrl(this.imageUrl);
+        retryWithUrl(this.imageThumbnailUrl);
     }
 
     private void retryWithUrl(String url) {
         setLoadError(false);
         setLoadFinish(false);
-        setImageUrl(url);
+        setImageThumbnailUrl(url);
     }
 }

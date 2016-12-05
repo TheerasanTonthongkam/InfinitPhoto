@@ -72,10 +72,6 @@ public class PhotoGirdAdapter extends BaseAdapter {
         }
     }
 
-    private boolean isLastItem(int position) {
-        return position == getCount() - 1;
-    }
-
     public void setOnRetryListener(OnRetryListener onRetryListener) {
         this.onRetryListener = onRetryListener;
     }

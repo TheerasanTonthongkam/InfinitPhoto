@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.playtech.infinitphoto.activities.main.MainActivityViewModel"/>
+            type="com.playtech.infinitphoto.view.activities.main.MainActivityViewModel"/>
     </data>
 
     <LinearLayout
