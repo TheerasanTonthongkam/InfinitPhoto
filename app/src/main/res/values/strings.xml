@@ -10,4 +10,5 @@
     <string name="add_people">Add more people</string>
     <string name="more">more</string>
     <string name="lastItem">No more matches</string>
+    <string name="loadFail">Load photos failed</string>
 </resources>

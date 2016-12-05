@@ -40,8 +40,9 @@ public class MyMatchesFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initViewModel();
         initShackBar();
+        initErrorBar();
         initAdapter();
-        viewModel.startRetrieveCookie("andy", "1234");
+        login();
     }
 
     private void initViewModel() {
@@ -63,6 +64,16 @@ public class MyMatchesFragment extends Fragment {
         layout.addView(progressBar);
     }
 
+    private void initErrorBar() {
+        binding.retryButton.setOnClickListener(v -> {
+            if (viewModel.getPhotoModels().size() > 0) {
+                viewModel.loadMore();
+            } else {
+                login();
+            }
+        });
+    }
+
     private void initAdapter() {
         adapter = new PhotoGirdAdapter(viewModel.getPhotoModels());
         adapter.setOnRetryListener(position -> {
@@ -74,6 +85,10 @@ public class MyMatchesFragment extends Fragment {
         binding.setAdapter(adapter);
     }
 
+    private void login() {
+        viewModel.startRetrieveCookie("andy", "1234");
+    }
+
     private Observable.OnPropertyChangedCallback onViewModelPropertyChanged() {
         return new Observable.OnPropertyChangedCallback() {
             @Override
@@ -82,12 +97,16 @@ public class MyMatchesFragment extends Fragment {
                     triggerLoadMore();
                 }
                 if (id == BR.photoModels) {
-                    if (viewModel.getPhotoModels() != null && adapter != null) {
-                        adapter.notifyDataSetChanged();
-                    }
+                    changeDataSet();
                 }
             }
         };
+    }
+
+    private void changeDataSet() {
+        if (viewModel.getPhotoModels() != null && adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void triggerLoadMore() {

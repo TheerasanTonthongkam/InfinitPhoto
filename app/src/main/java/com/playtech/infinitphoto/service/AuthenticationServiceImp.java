@@ -1,9 +1,9 @@
-package com.playtech.infinitphoto.sevice;
+package com.playtech.infinitphoto.service;
 
 import android.content.Context;
 
 import com.playtech.infinitphoto.cookie.PersistentCookieStore;
-import com.playtech.infinitphoto.sevice.interfaces.AuthenticationService;
+import com.playtech.infinitphoto.service.interfaces.AuthenticationService;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;

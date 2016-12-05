@@ -8,10 +8,11 @@ import android.databinding.ObservableArrayList;
 import com.playtech.infinitphoto.model.PhotoModel;
 import com.playtech.infinitphoto.BR;
 import com.playtech.infinitphoto.model.PhotoSet;
-import com.playtech.infinitphoto.sevice.AlumServiceImp;
-import com.playtech.infinitphoto.sevice.AuthenticationServiceImp;
-import com.playtech.infinitphoto.sevice.interfaces.AlumService;
-import com.playtech.infinitphoto.sevice.interfaces.AuthenticationService;
+import com.playtech.infinitphoto.model.RawAlbumData;
+import com.playtech.infinitphoto.service.AlumServiceImp;
+import com.playtech.infinitphoto.service.AuthenticationServiceImp;
+import com.playtech.infinitphoto.service.interfaces.AlumService;
+import com.playtech.infinitphoto.service.interfaces.AuthenticationService;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class MyMatchesViewModel extends BaseObservable {
     private ObservableArrayList<PhotoModel> photoModels;
     private boolean loadMore;
     private boolean loading;
+    private boolean error;
     final private AuthenticationService authService;
     private AlumService alumService;
     private int photoModelsSize = 0;
@@ -78,29 +80,41 @@ public class MyMatchesViewModel extends BaseObservable {
         notifyPropertyChanged(BR.loading);
     }
 
+    @Bindable
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+        notifyPropertyChanged(BR.error);
+    }
+
     private void loadData() {
         alumService.getAlbums(photoModels.size())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(res -> {
-                    setLoading(false);
-                    setLoadMore(false);
-                    maxSize = res.data.album.photos.total;
-                    ArrayList<PhotoSet> records = res.data.album.photos.records;
-                    for(PhotoSet ps : records) {
-                        photoModels.add(new PhotoModel(ps.urls.get(2).url));
-                    }
-                    if (photoModelsSize != photoModels.size()) {
-                        notifyPropertyChanged(BR.photoModels);
-                        photoModelsSize = photoModels.size();
-                    }
+                .subscribe(this::loadDataSuccess, this::onThrowError);
+    }
 
-                }, Throwable::printStackTrace);
+    private void loadDataSuccess(RawAlbumData res) {
+        setLoading(false);
+        setLoadMore(false);
+        maxSize = res.data.album.photos.total;
+        ArrayList<PhotoSet> records = res.data.album.photos.records;
+        for(PhotoSet ps : records) {
+            photoModels.add(new PhotoModel(ps.urls.get(2).url));
+        }
+        if (photoModelsSize != photoModels.size()) {
+            notifyPropertyChanged(BR.photoModels);
+            photoModelsSize = photoModels.size();
+        }
     }
 
     public void loadMore() {
         if (photoModelsSize < maxSize) {
             setLoadMore(true);
+            setError(false);
             loadData();
         }
     }
@@ -109,10 +123,14 @@ public class MyMatchesViewModel extends BaseObservable {
         if (body.code() == 404) {
             setLoading(false);
             loadMore();
+        } else {
+            setError(true);
         }
     }
 
     private void onThrowError(Throwable throwable) {
+        setError(true);
+        setLoading(false);
         throwable.printStackTrace();
     }
 

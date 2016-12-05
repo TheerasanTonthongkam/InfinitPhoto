@@ -1,4 +1,4 @@
-package com.playtech.infinitphoto.sevice.interfaces;
+package com.playtech.infinitphoto.service.interfaces;
 
 import java.net.HttpCookie;
 

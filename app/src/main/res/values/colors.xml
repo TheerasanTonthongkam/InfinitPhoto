@@ -11,4 +11,5 @@
     <color name="solid_white">#ffffff</color>
     <color name="deselected_tab_text">#b4bcbe</color>
     <color name="invisible">#00ffffff</color>
+    <color name="error_loading">#c6af0000</color>
 </resources>

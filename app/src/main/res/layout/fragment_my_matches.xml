@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewModel"
@@ -10,25 +11,51 @@
             type="com.playtech.infinitphoto.adapter.PhotoGirdAdapter"/>
         <import type="android.view.View"/>
     </data>
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/rootLayout"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ProgressBar
-            android:visibility="@{viewModel.loading? View.VISIBLE:View.GONE}"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
-        <GridView
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/rootLayout"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/photo_list"
-            app:photoAdapter="@{adapter}"
-            android:numColumns="3"/>
+            android:layout_height="match_parent">
 
-    </android.support.design.widget.CoordinatorLayout>
+            <ProgressBar
+                android:visibility="@{viewModel.loading? View.VISIBLE:View.GONE}"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/photo_list"
+                app:photoAdapter="@{adapter}"
+                android:numColumns="3"/>
+
+        </android.support.design.widget.CoordinatorLayout>
+        <LinearLayout
+            android:paddingLeft="@dimen/all_padding_medium"
+            android:paddingStart="@dimen/all_padding_medium"
+            android:visibility="@{viewModel.error? View.VISIBLE:View.GONE, default=gone}"
+            tools:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/error_loading">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/load_fail"
+                android:textColor="@color/solid_white"/>
+            <Button
+                android:id="@+id/retryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/retry"/>
+        </LinearLayout>
+    </RelativeLayout>
 </layout>

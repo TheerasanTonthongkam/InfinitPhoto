@@ -1,8 +1,8 @@
-package com.playtech.infinitphoto.sevice;
+package com.playtech.infinitphoto.service;
 
 import com.playtech.infinitphoto.intercepter.AddCookiesInterceptor;
 import com.playtech.infinitphoto.model.RawAlbumData;
-import com.playtech.infinitphoto.sevice.interfaces.AlumService;
+import com.playtech.infinitphoto.service.interfaces.AlumService;
 
 import java.net.HttpCookie;
 
@@ -21,8 +21,6 @@ public class AlumServiceImp implements AlumService {
     private static AlumServiceImp instance;
 
     private AlumServiceImp(HttpCookie cookie) {
-
-
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
 
@@ -34,7 +32,7 @@ public class AlumServiceImp implements AlumService {
         Retrofit retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://core-graphql.staging.waldo.photos")
+                .baseUrl("https://core-graphql.staging.waldo.photos/")
                 .client(build)
                 .build();
 
