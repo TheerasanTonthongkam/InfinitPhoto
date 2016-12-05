@@ -25,10 +25,9 @@ import rx.schedulers.Schedulers;
 public class AuthenticationServiceImp implements AuthenticationService {
 
     private static AuthenticationServiceImp instance;
-    private Retrofit authRetrofit;
 
-    AuthenticationService authService;
-    PersistentCookieStore store;
+    private AuthenticationService authService;
+    private PersistentCookieStore store;
 
     private AuthenticationServiceImp(Context context) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -44,7 +43,7 @@ public class AuthenticationServiceImp implements AuthenticationService {
         builder.interceptors().add(logging);
         OkHttpClient okHttpClient = builder.build();
 
-        authRetrofit = new Retrofit.Builder()
+        Retrofit authRetrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl("https://auth.staging.waldo.photos/")
@@ -54,7 +53,7 @@ public class AuthenticationServiceImp implements AuthenticationService {
         authService = authRetrofit.create(AuthenticationService.class);
     }
 
-    public static AuthenticationServiceImp getInstance(Context context) {
+    public static AuthenticationService getInstance(Context context) {
         if (instance == null) {
             instance = new AuthenticationServiceImp(context);
         }
