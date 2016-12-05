@@ -18,7 +18,6 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Single;
-import rx.schedulers.Schedulers;
 
 public class AuthenticationServiceImp implements AuthenticationService {
 

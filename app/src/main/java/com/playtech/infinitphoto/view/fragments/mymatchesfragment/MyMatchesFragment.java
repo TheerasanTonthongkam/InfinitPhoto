@@ -21,6 +21,11 @@ import com.playtech.infinitphoto.adapter.PhotoGirdAdapter;
 import com.playtech.infinitphoto.cookie.PersistentCookieStore;
 import com.playtech.infinitphoto.databinding.FragmentMyMatchesBinding;
 import com.playtech.infinitphoto.model.PhotoModel;
+import com.playtech.infinitphoto.schedulers.ThreadScheduler;
+
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MyMatchesFragment extends Fragment {
 
@@ -48,6 +53,8 @@ public class MyMatchesFragment extends Fragment {
 
     private void initViewModel() {
         viewModel = new MyMatchesViewModel(new PersistentCookieStore(getContext()));
+        ThreadScheduler scheduler = new ThreadScheduler(Schedulers.io(), AndroidSchedulers.mainThread());
+        viewModel.setThreadScheduler(scheduler);
         ObservableArrayList<PhotoModel> photoModels = new ObservableArrayList<>();
         viewModel.addOnPropertyChangedCallback(onViewModelPropertyChanged());
         viewModel.setPhotoModels(photoModels);

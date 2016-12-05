@@ -9,12 +9,14 @@ import com.playtech.infinitphoto.model.PhotoModel;
 import com.playtech.infinitphoto.BR;
 import com.playtech.infinitphoto.model.PhotoSet;
 import com.playtech.infinitphoto.model.RawAlbumData;
+import com.playtech.infinitphoto.schedulers.ThreadScheduler;
 import com.playtech.infinitphoto.service.ServiceProvider;
 import com.playtech.infinitphoto.service.interfaces.AlbumService;
 import com.playtech.infinitphoto.service.interfaces.AuthenticationService;
 
 import java.util.ArrayList;
 
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class MyMatchesViewModel extends BaseObservable {
@@ -27,6 +29,8 @@ public class MyMatchesViewModel extends BaseObservable {
     private int photoModelsSize = 0;
     private int maxSize = 0;
 
+    private ThreadScheduler threadScheduler;
+
     public MyMatchesViewModel() {}
 
     public MyMatchesViewModel(PersistentCookieStore store) {
@@ -38,8 +42,8 @@ public class MyMatchesViewModel extends BaseObservable {
         setLoading(true);
         if (authService.getTokenCookie() == null || authService.isTokenExpire()) {
             authService.getLoginResponseCode(username, password)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(Schedulers.immediate())
+                    .subscribeOn(threadScheduler.getSubscribeScheduler())
+                    .observeOn(threadScheduler.getAndroidMainTread())
                     .subscribe(this::onResponseReady,
                             this::onThrowError);
         } else {
@@ -90,8 +94,8 @@ public class MyMatchesViewModel extends BaseObservable {
 
     private void loadData() {
         albumService.getAlbums(photoModels.size())
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.immediate())
+                .subscribeOn(threadScheduler.getSubscribeScheduler())
+                .observeOn(threadScheduler.getAndroidMainTread())
                 .subscribe(this::loadDataSuccess, this::onThrowError);
     }
 
@@ -150,5 +154,13 @@ public class MyMatchesViewModel extends BaseObservable {
 
     public AlbumService getAlbumService() {
         return albumService;
+    }
+
+    public ThreadScheduler getThreadScheduler() {
+        return threadScheduler;
+    }
+
+    public void setThreadScheduler(ThreadScheduler threadScheduler) {
+        this.threadScheduler = threadScheduler;
     }
 }

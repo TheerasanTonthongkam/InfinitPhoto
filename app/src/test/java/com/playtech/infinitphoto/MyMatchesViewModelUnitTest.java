@@ -9,6 +9,7 @@ import com.playtech.infinitphoto.model.AlbumsData;
 import com.playtech.infinitphoto.model.Photo;
 import com.playtech.infinitphoto.model.PhotoModel;
 import com.playtech.infinitphoto.model.RawAlbumData;
+import com.playtech.infinitphoto.schedulers.ThreadScheduler;
 import com.playtech.infinitphoto.service.interfaces.AlbumService;
 import com.playtech.infinitphoto.service.interfaces.AuthenticationService;
 import com.playtech.infinitphoto.view.fragments.mymatchesfragment.MyMatchesViewModel;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 
 import rx.Observable;
 import rx.Single;
+import rx.schedulers.Schedulers;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MyMatchesViewModelUnitTest {
@@ -55,6 +57,8 @@ public class MyMatchesViewModelUnitTest {
     @Before
     public void before() {
         viewModel = new MyMatchesViewModel();
+        ThreadScheduler scheduler = new ThreadScheduler(Schedulers.io(), Schedulers.immediate());
+        viewModel.setThreadScheduler(scheduler);
         viewModel.setAlbumService(albumService);
         viewModel.setAuthService(authService);
         cookie = new HttpCookie("token", "name");
