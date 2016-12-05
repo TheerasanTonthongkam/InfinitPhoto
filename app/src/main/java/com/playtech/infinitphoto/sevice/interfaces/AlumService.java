@@ -1,6 +1,5 @@
 package com.playtech.infinitphoto.sevice.interfaces;
 
-import com.playtech.infinitphoto.model.AlbumsData;
 import com.playtech.infinitphoto.model.RawAlbumData;
 
 import retrofit2.http.GET;

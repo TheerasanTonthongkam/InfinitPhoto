@@ -4,7 +4,6 @@ import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.ObservableArrayList;
-import android.util.Log;
 
 import com.playtech.infinitphoto.model.PhotoModel;
 import com.playtech.infinitphoto.BR;
@@ -14,13 +13,10 @@ import com.playtech.infinitphoto.sevice.AuthenticationServiceImp;
 import com.playtech.infinitphoto.sevice.interfaces.AlumService;
 import com.playtech.infinitphoto.sevice.interfaces.AuthenticationService;
 
-import org.antlr.v4.codegen.model.SrcOp;
-
 import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
 import retrofit2.Response;
-import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -28,7 +24,7 @@ public class MyMatchesViewModel extends BaseObservable {
     private ObservableArrayList<PhotoModel> photoModels;
     private boolean loadMore;
     private boolean loading;
-    private AuthenticationService authService;
+    final private AuthenticationService authService;
     private AlumService alumService;
     private int photoModelsSize = 0;
     private int maxSize = 0;
@@ -50,7 +46,6 @@ public class MyMatchesViewModel extends BaseObservable {
             setLoading(true);
             loadData();
         }
-
     }
 
     @Bindable
@@ -100,9 +95,7 @@ public class MyMatchesViewModel extends BaseObservable {
                         photoModelsSize = photoModels.size();
                     }
 
-                }, throwable -> {
-                    throwable.printStackTrace();
-                });
+                }, Throwable::printStackTrace);
     }
 
     public void loadMore() {

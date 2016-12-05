@@ -20,12 +20,12 @@ public class PersistentCookieStore implements CookieStore{
 
     private static final String TAG = PersistentCookieStore.class.getSimpleName();
     private static final String TOKEN_COOKIE = "token";
-    public static final String SP_COOKIE_STORE = "cookie_store";
+    private static final String SP_COOKIE_STORE = "cookie_store";
     private static final String SP_KEY_DELIMITER = "|"; // Unusual char in URL
     private static final String SP_KEY_DELIMITER_REGEX = "\\"
             + SP_KEY_DELIMITER;
 
-    private SharedPreferences sharedPreferences;
+    private final SharedPreferences sharedPreferences;
 
     private Map<URI, Set<HttpCookie>> allCookies;
 

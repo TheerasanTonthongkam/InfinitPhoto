@@ -19,7 +19,6 @@ public class SquareFrameLayout extends RelativeLayout {
 
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        heightMeasureSpec = widthMeasureSpec;
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
     }
 }

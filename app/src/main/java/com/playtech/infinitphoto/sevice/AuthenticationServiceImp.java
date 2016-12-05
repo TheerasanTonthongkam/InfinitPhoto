@@ -26,8 +26,8 @@ public class AuthenticationServiceImp implements AuthenticationService {
 
     private static AuthenticationServiceImp instance;
 
-    private AuthenticationService authService;
-    private PersistentCookieStore store;
+    private final AuthenticationService authService;
+    private final PersistentCookieStore store;
 
     private AuthenticationServiceImp(Context context) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();

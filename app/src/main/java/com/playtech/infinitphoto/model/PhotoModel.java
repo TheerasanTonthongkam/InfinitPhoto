@@ -2,7 +2,6 @@ package com.playtech.infinitphoto.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.graphics.drawable.Drawable;
 
 import com.android.databinding.library.baseAdapters.BR;
 
@@ -49,7 +48,7 @@ public class PhotoModel extends BaseObservable {
         retryWithUrl(this.imageUrl);
     }
 
-    public void retryWithUrl(String url) {
+    private void retryWithUrl(String url) {
         setLoadError(false);
         setLoadFinish(false);
         setImageUrl(url);

@@ -9,21 +9,16 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.playtech.infinitphoto.BR;
 
 import com.playtech.infinitphoto.R;
 import com.playtech.infinitphoto.adapter.PhotoGirdAdapter;
-import com.playtech.infinitphoto.adapter.PhotoListAdapter;
 import com.playtech.infinitphoto.databinding.FragmentMyMatchesBinding;
 import com.playtech.infinitphoto.model.PhotoModel;
 
@@ -44,7 +39,6 @@ public class MyMatchesFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initViewModel();
-        initPhotoGrid();
         initShackBar();
         initAdapter();
 
@@ -57,10 +51,6 @@ public class MyMatchesFragment extends Fragment {
         viewModel.addOnPropertyChangedCallback(onViewModelPropertyChanged());
         viewModel.setPhotoModels(photoModels);
         binding.setViewModel(viewModel);
-    }
-
-    private void initPhotoGrid() {
-        GridView photoList = binding.photoList;
     }
 
     private void initShackBar() {

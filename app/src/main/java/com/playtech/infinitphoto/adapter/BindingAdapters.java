@@ -1,7 +1,6 @@
 package com.playtech.infinitphoto.adapter;
 
 import android.databinding.BindingAdapter;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -48,7 +47,7 @@ public final class BindingAdapters {
     }
 
     @BindingAdapter({"photoAdapter"})
-    public static void setRecycleView(GridView view, PhotoGirdAdapter adapter) {
+    public static void setGridView(GridView view, PhotoGirdAdapter adapter) {
         view.setAdapter(adapter);
     }
 }

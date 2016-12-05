@@ -13,7 +13,6 @@ import com.playtech.infinitphoto.databinding.ItemPhotoBinding;
 import com.playtech.infinitphoto.listener.OnEndList;
 import com.playtech.infinitphoto.listener.OnRetryListener;
 import com.playtech.infinitphoto.model.PhotoModel;
-import com.playtech.infinitphoto.viewholder.PhotoViewHolder;
 
 public class PhotoGirdAdapter extends BaseAdapter {
 

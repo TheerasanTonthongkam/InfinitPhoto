@@ -9,7 +9,7 @@ import okhttp3.Response;
 
 public class AddCookiesInterceptor implements Interceptor {
 
-    private HttpCookie cookie;
+    private final HttpCookie cookie;
 
     public AddCookiesInterceptor(HttpCookie cookie) {
         this.cookie = cookie;
