@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="item"
+            type="com.playtech.infinitphoto.model.PhotoModel"/>
+
+        <import type="android.view.View"/>
+    </data>
+    <com.playtech.infinitphoto.view.layout.SquareFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/grid_spacing"
+        android:gravity="center"
+        tools:layout_width="300dp"
+        tools:layout_height="300dp">
+        <ProgressBar
+            android:visibility="@{item.loadFinish? View.GONE:View.VISIBLE}"
+            android:id="@+id/image_progress"
+            android:layout_centerInParent="true"
+            android:layout_width="@dimen/progress_size"
+            android:layout_height="@dimen/progress_size" />
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_centerInParent="true"
+            app:photoModel="@{item}"
+            app:imageThumbnailUrl="@{item.imageThumbnailUrl}"
+            android:contentDescription="@string/image_thumbnail"
+            tools:src="@color/colorPrimary"/>
+        <LinearLayout
+            android:visibility="@{item.loadError? View.VISIBLE:View.GONE , default=gone}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:drawableTop="@drawable/icon_load_fail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/icon_padding"
+                android:text="@string/load_fail"/>
+            <Button
+                style="@style/RetryButton"
+                android:id="@+id/retry_button"
+                android:text="@string/retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </com.playtech.infinitphoto.view.layout.SquareFrameLayout>
+</layout>
