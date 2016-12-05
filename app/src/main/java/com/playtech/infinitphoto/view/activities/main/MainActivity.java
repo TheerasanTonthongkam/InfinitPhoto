@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
+        String label = getResources().getString(R.string.album_detail_label);
+        binding.toolbar.setTitle(label);
         setSupportActionBar(binding.toolbar);
     }
 
