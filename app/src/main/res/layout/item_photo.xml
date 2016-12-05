@@ -17,7 +17,7 @@
         tools:layout_width="300dp"
         tools:layout_height="300dp">
         <ProgressBar
-            android:visibility="@{item.loadFinish? View.GONE:View.VISIBLE, default = gone}"
+            android:visibility="@{item.loadFinish? View.GONE:View.VISIBLE}"
             android:id="@+id/image_progress"
             android:layout_centerInParent="true"
             android:layout_width="@dimen/progress_size"
@@ -33,7 +33,7 @@
             android:contentDescription="@string/image_thumbnail"
             tools:src="@color/colorPrimary"/>
         <LinearLayout
-            android:visibility="@{item.loadError? View.VISIBLE:View.GONE}"
+            android:visibility="@{item.loadError? View.VISIBLE:View.GONE , default=gone}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
