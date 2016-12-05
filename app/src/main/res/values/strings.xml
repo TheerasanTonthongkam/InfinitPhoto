@@ -9,4 +9,5 @@
     <string name="image_thumbnail">thumbnail</string>
     <string name="add_people">Add more people</string>
     <string name="more">more</string>
+    <string name="lastItem">No more matches</string>
 </resources>

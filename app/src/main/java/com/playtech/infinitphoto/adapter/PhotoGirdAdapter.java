@@ -59,10 +59,7 @@ public class PhotoGirdAdapter extends BaseAdapter {
         binding.image.setTag(i);
         binding.retryButton.setOnClickListener(v -> onRetryListener.click(i));
         setImageNotBlinkWhenReuse(binding.image, tag, i);
-
-        if (isLastItem(i)) {
-            onEndList.callback();
-        }
+        onEndList.callback(i, photoModels.size());
 
         return view;
     }

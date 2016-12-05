@@ -115,4 +115,8 @@ public class MyMatchesViewModel extends BaseObservable {
     private void onThrowError(Throwable throwable) {
         throwable.printStackTrace();
     }
+
+    public int getMaxSize() {
+        return maxSize;
+    }
 }

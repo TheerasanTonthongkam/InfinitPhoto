@@ -12,7 +12,6 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ProgressBar;
 
 import com.playtech.infinitphoto.BR;
@@ -71,7 +70,7 @@ public class MyMatchesFragment extends Fragment {
             photoModel.retry();
         });
 
-        adapter.setOnEndList(() -> viewModel.loadMore());
+        adapter.setOnEndList(this::onLastItem);
         binding.setAdapter(adapter);
     }
 
@@ -100,5 +99,22 @@ public class MyMatchesFragment extends Fragment {
         }
     }
 
+    private void onLastItem(int position, int size) {
+        if (isLastItem(position, size)) {
+            Snackbar.make(binding.rootLayout, R.string.lastItem, Snackbar.LENGTH_SHORT).show();
+        }
+
+        if (isScrollToEnd(position, size)) {
+            viewModel.loadMore();
+        }
+    }
+
+    private boolean isLastItem(int position, int size) {
+        return isScrollToEnd(position, size) && size == viewModel.getMaxSize();
+    }
+
+    private boolean isScrollToEnd(int position, int size) {
+        return position == (size-1);
+    }
 }
 
