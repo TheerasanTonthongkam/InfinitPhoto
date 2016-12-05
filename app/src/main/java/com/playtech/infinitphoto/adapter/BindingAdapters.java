@@ -14,7 +14,7 @@ public final class BindingAdapters {
     }
 
     @BindingAdapter({"photoModel", "imageThumbnailUrl"})
-    public static void setPhoto(ImageView imageView, PhotoModel photoModel, String imageThumbnailUrl) {
+    public static void setThumbnailPhoto(ImageView imageView, PhotoModel photoModel, String imageThumbnailUrl) {
         if (photoModel.getImageThumbnailUrl().isEmpty()) {
             photoModel.setImageThumbnailUrl(null);
         }

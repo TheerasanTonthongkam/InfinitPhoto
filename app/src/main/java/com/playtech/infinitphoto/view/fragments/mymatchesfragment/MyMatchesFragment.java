@@ -41,7 +41,6 @@ public class MyMatchesFragment extends Fragment {
         initViewModel();
         initShackBar();
         initAdapter();
-
         viewModel.startRetrieveCookie("andy", "1234");
     }
 
