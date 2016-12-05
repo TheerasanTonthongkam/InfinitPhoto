@@ -22,16 +22,7 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
-
-        <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/photo_list"-->
-            <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
-            <!--android:paddingStart="@dimen/activity_horizontal_margin"-->
-            <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
-            <!--android:paddingEnd="@dimen/activity_horizontal_margin"-->
-            <!--app:photoAdapter="@{adapter}"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent" />-->
+        
         <GridView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
